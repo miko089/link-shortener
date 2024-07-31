@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Shortener</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center">Link Shortener</h1>
+    <form id="shorten-form" class="mt-4">
+        <div class="form-group">
+            <label for="full-url">Enter URL:</label>
+            <input type="text" id="full-url" name="full-url" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Shorten</button>
+    </form>
+    <div id="result" class="mt-4"></div>
+</div>
+
+<script>
+    document.getElementById('shorten-form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const fullUrl = document.getElementById('full-url').value;
+        const response = await fetch('/shorten', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ full: fullUrl })
+        });
+        const result = await response.json();
+        const resultDiv = document.getElementById('result');
+        if (response.ok) {
+            resultDiv.innerHTML = `<p>Shortened URL: <a href="${result.short}" target="_blank">${result.short}</a></p>`;
+        } else {
+            resultDiv.innerHTML = `<p class="text-danger">Error: ${result.error}</p>`;
+        }
+    });
+</script>
+</body>
+</html>
