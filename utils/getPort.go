@@ -12,7 +12,7 @@ func GetPort() string {
 		log.Print("Error loading .env file")
 	}
 	if os.Getenv("PORT") == "" {
-		return "80"
+		return ":80"
 	}
-	return os.Getenv("PORT")
+	return ":" + os.Getenv("PORT")
 }

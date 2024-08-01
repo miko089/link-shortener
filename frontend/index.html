@@ -5,10 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Link Shortener</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="http://miko089.ru/miko_icon.ico" type="image/x-icon">
+    <style>
+        .icon-align {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 <body>
 <div class="container mt-5">
-    <h1 class="text-center">Link Shortener</h1>
+    <h1 class="d-flex align-items-center">
+        <a href="http://miko089.ru" target="_blank" class="mr-2 icon-align">
+            <img src="http://miko089.ru/miko_icon.ico" alt="mikothecat Icon" style="width: 32px; height: 32px;">
+        </a>
+        <span class="icon-align">Link Shortener</span>
+    </h1>
     <form id="shorten-form" class="mt-4">
         <div class="form-group">
             <label for="full-url">Enter URL:</label>
