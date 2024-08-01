@@ -3,6 +3,7 @@ package database
 import (
 	"gorm.io/gorm"
 	"linkShortener/utils"
+	"log"
 )
 
 type Link struct {
@@ -16,6 +17,7 @@ func CreateLink(db *gorm.DB, full string) (*Link, error) {
 		short = utils.RandomLink()
 		_, err := GetLink(db, short)
 		if err != nil {
+			log.Print(err)
 			break
 		}
 	}
