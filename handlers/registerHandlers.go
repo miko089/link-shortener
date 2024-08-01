@@ -7,5 +7,5 @@ import (
 
 func RegisterHandlers(app *fiber.App, db *gorm.DB) {
 	app.Post("/shorten", shortenLinkHandler(db))
-	app.Get("/:short{6}", longerLinkHandler(db))
+	app.Get("/:short", longerLinkHandler(db))
 }
