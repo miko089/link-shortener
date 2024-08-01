@@ -28,6 +28,10 @@ func CreateLink(db *gorm.DB, full string) (*Link, error) {
 
 func GetLink(db *gorm.DB, short string) (*Link, error) {
 	var link Link
+	b := short == ""
+	if b {
+		return nil, gorm.ErrRecordNotFound
+	}
 	err := db.Where("short = ?", short).First(&link).Error
 	return &link, err
 }
